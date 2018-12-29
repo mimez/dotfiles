@@ -61,7 +61,3 @@ alias his="historie"
 alias quit="exit"
 alias week="date +%V"
 alias speedtest="wget -O /dev/null http://speed.transip.nl/100mb.bin"
-
-# MacOS
-
-alias flushdns="dscacheutil -flushcache && killall -HUP mDNSResponder"
