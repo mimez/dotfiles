@@ -1,0 +1,6 @@
+#!/bin/bash
+project_handle=`get-projecthandle`
+if [ -n "$project_handle" ]; 
+    then echo "$project_handle, public"
+    else echo '"$user",public'
+fi

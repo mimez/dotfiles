@@ -1,0 +1,12 @@
+#!/bin/bash
+if [ ! -z "$1" ]
+  then cd /data/webs/$1
+fi
+project_handle=`get-projecthandle`
+
+if [ -z "$project_handle" ]; then
+  echo "current directory seems not to be a valid project"
+  exit 1
+fi
+
+psql `psql-connection-by-projecthandle.php $project_handle`
