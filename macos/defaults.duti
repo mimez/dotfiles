@@ -1,0 +1,8 @@
+com.github.atom public.shell-script all
+com.github.atom public.unix-executable all
+com.github.atom .txt all
+com.github.atom .json all
+com.github.atom .md all
+com.github.atom .xml all
+com.github.atom .vcl all
+com.github.atom .sql all
