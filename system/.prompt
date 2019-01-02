@@ -54,6 +54,7 @@ _bash_prompt_config() {
   P_WHITE=${WHITE}
   P_GREEN=${BRIGHT_GREEN}
   P_YELLOW=${YELLOW}
+  P_VIOLET=${VIOLET}
   P_RED=${RED}
   P_RESET=${RESET}
 
@@ -85,12 +86,18 @@ bash_prompt_command() {
   # Parse Git branch name
   P_GIT=$(parse_git_branch)
 
+  # Parse SVN
+  P_SVN=$(parse_svn_branch)
+
+  # PHP-Version
+  P_PHP=$(get_php_version)
+
   # Exit code
   if [[ $EXIT_CODE != 0 ]]; then
     P_EXIT+="${P_RED}✘ "
   fi
 
-  PS1="${P_EXIT}${P_USER}${P_WHITE}@${P_HOST} ${P_YELLOW}${P_PWD}${P_GREEN}${P_GIT}${P_YELLOW} ❯ ${P_RESET}"
+  PS1="${P_EXIT}${P_YELLOW}(${P_PHP}) ${P_USER}${P_WHITE}@${P_HOST} ${P_YELLOW}${P_PWD}${P_GREEN}${P_GIT}${P_SVN}${P_YELLOW} ❯ ${P_RESET}"
 }
 
 parse_git_branch() {
@@ -98,6 +105,14 @@ parse_git_branch() {
   if [ "$OUT" != "" ]; then echo " $OUT"; fi
 }
 
+parse_svn_branch() {
+  local OUT=`expr "$(svn info 2> /dev/null | grep ^URL)" : '^.*\(trunk\).*'`
+  if [ "$OUT" != "" ]; then echo " $OUT"; fi
+}
+
+get_php_version() {
+    echo $(php -v | grep -oE "PHP\s([0-9\.]+)" | awk '{print $2}')
+}
 _bash_prompt_config
 unset _bash_prompt_config
 
