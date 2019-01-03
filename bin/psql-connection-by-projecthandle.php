@@ -30,4 +30,5 @@ $params = array();
 if (defined('PG_CONN_HOST')) $params[] = '-h ' . PG_CONN_HOST;
 if (defined('PG_CONN_PORT')) $params[] = '-p ' . PG_CONN_PORT;
 if (defined('PG_CONN_DBNAME')) $params[] = PG_CONN_DBNAME;
+$params[] = '-U webdev';
 echo implode(' ', $params);
