@@ -12,12 +12,12 @@ if (!file_exists($project_path)) {
     die(sprintf('project=(%s) does not exist', $project_handle));
 }
 
-if (file_exists($project_path . '/config/config.php')) {
+if (file_exists($project_path . '/app/config/config.php')) {
+    $config_path = $project_path . '/app/config/config.php';
+} elseif (file_exists($project_path . '/config/config.php')) {
     $config_path = $project_path . '/config/config.php';
 } elseif (file_exists($project_path . '/includes/settings.php')) {
     $config_path = $project_path . '/includes/settings.php';
-} elseif (file_exists($project_path . '/app/config/config.php')) {
-    $config_path = $project_path . '/app/config/config.php';
 }
 
 if (!file_exists($config_path)) {
