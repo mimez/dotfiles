@@ -1,2 +1,2 @@
 #!/bin/bash
-echo `expr "$PWD" : '^.*/\([a-z]*_[_a-z]*\)'`
+echo `expr "$PWD" : '^.*/\([a-z]*\_[_a-z0-9]*\)'`
