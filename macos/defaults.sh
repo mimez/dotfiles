@@ -143,3 +143,6 @@ defaults write com.apple.commerce AutoUpdateRestartRequired -bool true
 
 # prevent reopen application after restart
 defaults write -g ApplePersistence -bool no
+
+# disable dark mode for chrome
+defaults write com.google.Chrome NSRequiresAquaSystemAppearance -bool Yes
