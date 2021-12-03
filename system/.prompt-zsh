@@ -2,8 +2,8 @@
 
 _bash_prompt_config() {
 
-  local USER_SYMBOL="\u"
-  local HOST_SYMBOL="\h"
+  local USER_SYMBOL="%n"
+  local HOST_SYMBOL="%m"
   local ESC_OPEN="\["
   local ESC_CLOSE="\]"
 
@@ -49,14 +49,15 @@ _bash_prompt_config() {
   local WHITE_BOLD="${ESC_OPEN}${BOLD}$(_setaf 7)${ESC_CLOSE}"
 
   # Expose the variables we need in prompt command
-  P_USER=${BRIGHT_GREEN}${USER_SYMBOL}
-  P_HOST=${CYAN}${HOST_SYMBOL}
-  P_WHITE=${WHITE}
-  P_GREEN=${BRIGHT_GREEN}
-  P_YELLOW=${YELLOW}
-  P_VIOLET=${VIOLET}
-  P_RED=${RED}
-  P_RESET=${RESET}
+  P_CYAN=%B%F{cyan}
+  P_WHITE=%B%F{white}
+  P_GREEN=%B%F{green}
+  P_YELLOW=%B%F{yellow}
+  P_VIOLET=%B%F{violet}
+  P_RED=%B%F{red}
+  P_RESET="%f%b"
+  P_USER=${P_GREEN}${USER_SYMBOL}
+  P_HOST=${P_CYAN}${HOST_SYMBOL}
 
 }
 
@@ -97,7 +98,8 @@ bash_prompt_command() {
     P_EXIT+="${P_RED}✘ "
   fi
 
-  PS1="${P_EXIT}${P_YELLOW}(${P_PHP}) ${P_USER}${P_WHITE}@${P_HOST} ${P_YELLOW}${P_PWD}${P_GREEN}${P_GIT}${P_SVN}${P_YELLOW} ❯ ${P_RESET}"
+  PS1="${P_YELLOW}(${P_PHP}) ${P_USER}${P_WHITE}@${P_HOST} ${P_YELLOW}${P_PWD}${P_GREEN} ❯ ${P_RESET}"
+  RPROMPT="${P_GREEN}${P_GIT}${P_SVN}"
 }
 
 parse_git_branch() {
@@ -116,4 +118,4 @@ get_php_version() {
 _bash_prompt_config
 unset _bash_prompt_config
 
-PROMPT_COMMAND=bash_prompt_command
+precmd_functions=(bash_prompt_command)
