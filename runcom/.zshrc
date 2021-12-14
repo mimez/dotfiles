@@ -21,3 +21,4 @@ export DOTFILES_DIR DOTFILES_EXTRA_DIR
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export PATH=/Users/michael/.meteor:$PATH
+export LSCOLORS="gxfxcxdxbxegedabagacad"
